@@ -1,0 +1,19 @@
+@searchlog =              
+    EXTRACT retweets double,    
+            favorites double,
+            just_date DateTime,
+            sentiment_score double,
+            total_score double
+    FROM "/assign5data/totalscore.csv"
+    USING Extractors.Csv(encoding: Encoding.UTF8,skipFirstNRows:1);
+
+@query4 =
+    SELECT
+    just_date.ToString("yyyy-MM-dd") AS correct_date,
+    SUM(total_score)/SUM(retweets+1) AS average_score
+    FROM @searchlog
+    GROUP BY just_date;
+
+OUTPUT @query4
+    TO "/output/twitter_222222.csv"
+    USING Outputters.Csv(outputHeader: true);

@@ -1,3 +1,7 @@
+# reference: CSCI5408 A3 tutorial. Retrieved August 4, 2018, from https://dal.brightspace.com/d2l/le/content/73925/viewContent/999921/View
+
+
+
 import tweepy
 import socket
 import requests
@@ -52,13 +56,13 @@ class TwitterStreamListener(tweepy.StreamListener):
 
 if __name__ == '__main__':
         # Authentication
-        consumer_key = "z56cu40Jq1XxntXeGKLfhNZnk"
-        consumer_secret = "NWsAOtbQ4lVGPq7xooVbE21XEeMnDuFBtdTfyZzc85Czh4wKnm"
-        access_token = "1003752992171024386-lsvEB53AROSLhKGJgEchdgajkBJTIC"
-        access_token_secret = "NV7vVHJX3FrGJFm1fx7hivxKBLOfVom34gYAJeaUEklX1"
+        consumer_key = ""
+        consumer_secret = ""
+        access_token = ""
+        access_token_secret = ""
 
         # Local connection
-        host = "172.31.37.12"          # Get local machine name (copy internal address from EC2 instance).
+        host = "<your_ip>"          # Get local machine name (copy internal address from EC2 instance).
         port = 5555                 # Reserve a port for your service.
 
         s = socket.socket()         # Create a socket object.
@@ -78,4 +82,4 @@ if __name__ == '__main__':
 
         streamListener = TwitterStreamListener(c)
         myStream = tweepy.Stream(auth=api.auth, listener=streamListener, tweet_mode='extended')
-        myStream.filter(track=['movie','movies','music'], async=True)
+        myStream.filter(track=['movie','movies'], async=True)
